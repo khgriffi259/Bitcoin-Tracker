@@ -12,10 +12,17 @@ class App extends Component {
     
     this.callBackEndApi()
     .then(res => {
-      this.setState({coins: res.express.data});
-      console.log('coins updated');
-    })
+    this.setState({coins: res.express.data});
+    console.log('coins retrieved');
+  })
 
+    setInterval(() => {
+      this.callBackEndApi()
+        .then(res => {
+        this.setState({coins: res.express.data});
+        console.log('coins updated');
+      })
+    }, 60000)
   }
   
   callBackEndApi = async () => {
